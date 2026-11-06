@@ -1,0 +1,49 @@
+internal class Program
+{
+    static void Main(string[] args)
+    {
+        int[] arr = [0,1,1,2,3,6,8,10,23,38,55,89,199,233,377,638];
+        int L = arr[0];
+        int H = arr.Count() - 1;
+        int M = (L+H)/2;
+        bool found = false;
+
+        int LinearSearch(int h, int l, int num)
+        {
+            
+            while (true)
+            {
+                int m = (h + l) / 2;
+                if (num == m)
+                {
+                    return m;
+                }
+                else if (num < m)
+                {
+                    L = m + 1;
+                }
+                else if (num > m)
+                {
+                    H = m - 1;
+                }
+            }
+        }
+        Console.Write($"Enter value of n: ");
+        int n = int.Parse(Console.ReadLine());
+        while (found != true)
+        {
+            for (int i = 3; i < arr.Count() - 1; i += 4)
+            {
+                if (arr[i] == n)
+                {
+                    found = true;
+                }
+                else if (arr[i] < n)
+                { 
+                
+                }
+            }
+        }
+        Console.ReadKey();
+    }
+}
