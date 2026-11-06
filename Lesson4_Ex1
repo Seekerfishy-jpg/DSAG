@@ -1,0 +1,61 @@
+
+using System.IO;
+
+
+class purchase  
+{
+    public DateTime date;
+    public string strName;
+    public float fltprice;
+
+    public purchase(DateTime d, string s, float p)
+    {
+        date = d;
+        strName = s;
+        fltprice = p;
+    }
+}
+
+internal class Program
+{
+    static void Main(string[] args)
+    {
+        string[] lines = File.ReadAllLines(@"C:\Users\Evanl\OneDrive\Desktop\DSAG\Lesson 4\Lesson4_Ex1_Data.txt");
+        purchase[] purchase = new purchase[lines.Length];
+        string choice = "";
+        while (choice != "E")
+        {
+            Console.WriteLine($"(1) Read and Display all file contents\n(2) Search withdrawal");
+            Console.Write($"(E) Exit\nEnter your choice:");
+            choice = Console.ReadLine();
+            for (int i = 0; i < lines.Count(); i++)
+            {
+                string[] words = lines[i].Split(",");
+                DateTime date = DateTime.Parse(words[0]);
+                string Name = words[1];
+                float price = float.Parse(words[2]);
+                purchase[i] = new purchase(date, Name, price);
+            }
+                if (choice == "1")
+            {
+                Console.WriteLine(lines.Count());
+                for (int j = 0; j < lines.Count(); j++)
+                {
+                    Console.WriteLine($"{purchase[j].date,-10}{purchase[j].strName}{purchase[j].fltprice}");
+                }
+            }
+            if (choice == "2")
+            { 
+                Console.Write($"How much was the the transaction: $");
+                float search_price = float.Parse(Console.ReadLine());
+                for (int k = 0; k < lines.Count() ; k++)
+                {
+                    if (purchase[k].fltprice == search_price)
+                    {
+                        Console.WriteLine($"{purchase[k].date,-10}{purchase[k].strName}{purchase[k].fltprice}");
+                    }
+                }
+            }
+        }
+    }
+}
