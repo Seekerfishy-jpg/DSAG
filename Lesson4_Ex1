@@ -2,13 +2,13 @@
 using System.IO;
 
 
-class purchase  
+class Purchase
 {
     public DateTime date;
     public string strName;
     public float fltprice;
 
-    public purchase(DateTime d, string s, float p)
+    public Purchase(DateTime d, string s, float p)
     {
         date = d;
         strName = s;
@@ -21,7 +21,7 @@ internal class Program
     static void Main(string[] args)
     {
         string[] lines = File.ReadAllLines(@"C:\Users\Evanl\OneDrive\Desktop\DSAG\Lesson 4\Lesson4_Ex1_Data.txt");
-        purchase[] purchase = new purchase[lines.Length];
+        Purchase[] purchase = new Purchase[lines.Length];
         string choice = "";
         while (choice != "E")
         {
@@ -34,9 +34,9 @@ internal class Program
                 DateTime date = DateTime.Parse(words[0]);
                 string Name = words[1];
                 float price = float.Parse(words[2]);
-                purchase[i] = new purchase(date, Name, price);
+                purchase[i] = new Purchase(date, Name, price);
             }
-                if (choice == "1")
+            if (choice == "1")
             {
                 Console.WriteLine(lines.Count());
                 for (int j = 0; j < lines.Count(); j++)
@@ -45,10 +45,10 @@ internal class Program
                 }
             }
             if (choice == "2")
-            { 
+            {
                 Console.Write($"How much was the the transaction: $");
                 float search_price = float.Parse(Console.ReadLine());
-                for (int k = 0; k < lines.Count() ; k++)
+                for (int k = 0; k < lines.Count(); k++)
                 {
                     if (purchase[k].fltprice == search_price)
                     {
